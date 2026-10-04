@@ -1,0 +1,5 @@
+node_modules/
+.contextforge/
+.contextforge-cache/
+coverage/
+.DS_Store

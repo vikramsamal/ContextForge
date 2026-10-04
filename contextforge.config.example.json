@@ -1,0 +1,8 @@
+{
+  "mode": "standard",
+  "maxFiles": 8,
+  "maxFileBytes": 262144,
+  "includeGit": true,
+  "includeTests": true,
+  "includeDocumentation": true
+}

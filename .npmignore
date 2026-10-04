@@ -1,0 +1,5 @@
+.DS_Store
+.contextforge/
+.contextforge-cache/
+coverage/
+contextforge-*.tgz

@@ -1,0 +1,109 @@
+[
+  {
+    "id": "tc-01-simple-ui",
+    "name": "Simple UI text change",
+    "category": "simple",
+    "request": "Change src/Login.jsx button text to Submit",
+    "conversation": [],
+    "expected": {
+      "targets": ["button"],
+      "explicitFiles": ["src/Login.jsx"],
+      "unresolvedAmbiguity": false,
+      "requiredInPrompt": ["Submit", "src/Login.jsx"],
+      "mustPreserveConstraints": []
+    }
+  },
+  {
+    "id": "tc-02-non-native-auth",
+    "name": "Non-native English auth refresh fix with constraint",
+    "category": "non-native-english",
+    "request": "login not working after refresh fix please don't change UI or api contract",
+    "conversation": [],
+    "expected": {
+      "targets": ["login", "refresh"],
+      "unresolvedAmbiguity": false,
+      "requiredInPrompt": ["authentication", "refresh"],
+      "mustPreserveConstraints": ["don't change UI", "api contract"]
+    }
+  },
+  {
+    "id": "tc-03-ambiguous-perf",
+    "name": "Ambiguous performance request",
+    "category": "ambiguity",
+    "request": "make it faster",
+    "conversation": [],
+    "expected": {
+      "unresolvedAmbiguity": true,
+      "confidenceMax": 0.6,
+      "requiredQuestionsCount": 1
+    }
+  },
+  {
+    "id": "tc-04-multi-turn-upload",
+    "name": "Multi-turn file upload with accumulated constraints",
+    "category": "multi-turn",
+    "request": "compile upload task",
+    "conversation": [
+      "Fix the file upload.",
+      "It also needs to support large files.",
+      "Don't change the UI.",
+      "Use the existing S3 implementation."
+    ],
+    "expected": {
+      "unresolvedAmbiguity": false,
+      "mustPreserveConstraints": ["Don't change the UI", "existing S3 implementation"],
+      "requiredRequirements": ["large files"]
+    }
+  },
+  {
+    "id": "tc-05-contradictory-correction",
+    "name": "Correction superseding earlier constraint",
+    "category": "contradictory",
+    "request": "Update the upload flow",
+    "conversation": [
+      "Don't change the upload UI.",
+      "Actually, redesign the upload UI to show progress."
+    ],
+    "expected": {
+      "mustNotIncludeConstraint": "Don't change the upload UI",
+      "mustIncludeRequirement": "redesign the upload UI"
+    }
+  },
+  {
+    "id": "tc-06-terse-dashboard",
+    "name": "Terse dashboard card fix",
+    "category": "terse",
+    "request": "dashboard card glitch fix dont touch other stuff",
+    "conversation": [],
+    "expected": {
+      "targets": ["dashboard", "card"],
+      "mustPreserveConstraints": ["dont touch other stuff"],
+      "unresolvedAmbiguity": false
+    }
+  },
+  {
+    "id": "tc-07-backend-database",
+    "name": "Backend database query optimization with preservation",
+    "category": "backend",
+    "request": "optimize user query in auth/session.js but keep existing postgres schema intact",
+    "conversation": [],
+    "expected": {
+      "targets": ["query", "auth", "session"],
+      "explicitFiles": ["auth/session.js"],
+      "mustPreserveConstraints": ["keep existing postgres schema intact"],
+      "unresolvedAmbiguity": false
+    }
+  },
+  {
+    "id": "tc-08-mcp-integration",
+    "name": "MCP tool configuration task",
+    "category": "mcp",
+    "request": "add new mcp tool for scanning without changing existing tools",
+    "conversation": [],
+    "expected": {
+      "targets": ["mcp"],
+      "mustPreserveConstraints": ["without changing existing tools"],
+      "unresolvedAmbiguity": false
+    }
+  }
+]
